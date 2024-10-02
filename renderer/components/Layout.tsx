@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import Link from "next/link";
 import Head from "next/head";
+import { StoreProvider } from "easy-peasy";
 
 type Props = {
   children: ReactNode;
@@ -15,15 +16,21 @@ const Layout = ({ children, title = "This is the default title" }: Props) => (
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <header>
-      <nav>
-        <Link href="/">Home</Link> | <Link href="/about">About</Link> |{" "}
-        <Link href="/initial-props">With Initial Props</Link>
+      <nav className="flex gap-2 p-2 justify-center">
+        <Link className="bg-gray-200 p-2 rounded-md" href="/">
+          Hjem
+        </Link>
+        <Link className="bg-gray-200 p-2 rounded-md" href="/sales-page">
+          Omsætning
+        </Link>
+        <Link className="bg-gray-200 p-2 rounded-md" href="/products-page">
+          Produkter
+        </Link>
       </nav>
     </header>
-    {children}
+    <div className="p-4">{children}</div>
     <footer>
       <hr />
-      <span>I'm here to stay (Footer)</span>
     </footer>
   </div>
 );
