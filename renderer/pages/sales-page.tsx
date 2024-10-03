@@ -14,7 +14,7 @@ const SalesPage = () => {
   }, []);
 
   return (
-    <Layout>
+    <Layout title="Omsætning">
       <div className="grid gap-4">
         <SalesPageFilter></SalesPageFilter>
         <SalesPageDataGrid></SalesPageDataGrid>
