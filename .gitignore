@@ -36,3 +36,8 @@ yarn-error.log*
 next-env.d.ts
 
 /renderer/.next/
+renderer/.next/build-manifest.json
+renderer/.next/trace
+renderer/.next/server/middleware-build-manifest.js
+renderer/.next/static/chunks/webpack.js
+renderer/.next/static/development/_buildManifest.js

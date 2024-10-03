@@ -8,10 +8,7 @@ import InputWithLabel from "../components/common/InputWithLabel";
 import SalesPageFilter from "../components/sales-page/SalesPageFilter";
 
 const SalesPage = () => {
-  const { refresh, updateFilter } = SalesStore.useStoreActions(
-    (action) => action
-  );
-  const { filter, sales } = SalesStore.useStoreState((state) => state);
+  const refresh = SalesStore.useStoreActions((action) => action.refresh);
   useEffect(() => {
     refresh();
   }, []);

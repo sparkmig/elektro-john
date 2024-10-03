@@ -1,6 +1,7 @@
 import { BasketStore } from "../stores/basket-store";
 import { StoreItem } from "../types/basket-store";
 import { Product as ProductType } from "../types/product";
+import Card from "./common/Card";
 
 type Props = {
   product: ProductType;
@@ -9,7 +10,7 @@ type Props = {
 const Product = ({ product }: Props) => {
   const addItem = BasketStore.useStoreActions((actions) => actions.addItem);
   return (
-    <li className="border-gray-200 border-[1px] rounded-md p-2 flex flex-col hover:shadow-md transition-all ease-in">
+    <Card shadowOnHover={true}>
       <strong>{product.name}</strong>
       <p>Pris: {product.price}kr.</p>
       <button
@@ -23,7 +24,7 @@ const Product = ({ product }: Props) => {
       >
         Læg i kurv
       </button>
-    </li>
+    </Card>
   );
 };
 

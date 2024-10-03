@@ -8,7 +8,7 @@ type Props = PropsWithChildren<{
 const Card = ({ children, shadowOnHover = false, shadow = "" }: Props) => {
   return (
     <div
-      className={`p-2 border-[1px] border-gray-200 rounded-md transition-shadow flex flex-col ${
+      className={`p-2 border-[1px] border-gray-200 rounded-md transition-shadow ease-in flex flex-col ${
         shadowOnHover ? "hover:shadow-md" : shadow
       }`}
     >
