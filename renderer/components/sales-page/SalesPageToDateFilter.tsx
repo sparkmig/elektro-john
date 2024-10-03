@@ -6,7 +6,7 @@ const SalesPageToDateFilter = () => {
   const filter = SalesStore.useStoreState((x) => x.filter);
   return (
     <InputWithLabel
-      label="Test"
+      label="Til"
       type="date"
       value={filter.to?.toISOString().substring(0, 10)}
       onChange={(event) => {

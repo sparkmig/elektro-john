@@ -1,5 +1,6 @@
 import AmountEarnedInPeriod from "./AmountEarnedInPeriod";
 import SalesAmount from "./SalesAmount";
+import SalesPageSalesAverageByCustomer from "./SalesPageSalesAverageByCustomer";
 
 const SalesPageDataGrid = () => {
   return (
@@ -8,6 +9,7 @@ const SalesPageDataGrid = () => {
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
         <AmountEarnedInPeriod></AmountEarnedInPeriod>
         <SalesAmount></SalesAmount>
+        <SalesPageSalesAverageByCustomer></SalesPageSalesAverageByCustomer>
       </div>
     </div>
   );
