@@ -13,5 +13,6 @@ export type BasketStore = {
   removeItem: Action<BasketStore, number>;
   mulitplyItem: Action<BasketStore, number>;
   deductItem: Action<BasketStore, number>;
-  checkout: Action<BasketStore, string>;
+  checkout: Thunk<BasketStore, string>;
+  clearBasket: Action<BasketStore>;
 };

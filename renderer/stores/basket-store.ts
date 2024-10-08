@@ -1,4 +1,4 @@
-import { action, createContextStore } from "easy-peasy";
+import { action, createContextStore, thunk } from "easy-peasy";
 import { BasketStore as BasketStoreType } from "../types/basket-store";
 
 export const BasketStore = createContextStore<BasketStoreType>({
@@ -25,9 +25,26 @@ export const BasketStore = createContextStore<BasketStoreType>({
   removeItem: action((state, id) => {
     state.items = state.items.filter((x) => x.id !== id);
   }),
-  checkout: action((state, name) => {
-    //TODO: checkout flow
+  checkout: thunk(async (actions, customer, { getState }) => {
+    const { items } = getState();
 
+    const body = {
+      sum: items.reduce((a, b) => a + b.amount * b.price, 0),
+      customer: customer,
+    };
+    const respone = await fetch("http://localhost:5033/sales", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (respone.ok) actions.clearBasket();
+    else throw "response not ok";
+  }),
+  clearBasket: action((state) => {
     state.items = [];
   }),
 });

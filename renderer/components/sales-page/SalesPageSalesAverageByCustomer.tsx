@@ -7,7 +7,7 @@ const SalesPageSalesAverageByCustomer = () => {
   const averageByCustomer = useMemo(() => {
     const customersObj = Object.groupBy(sales, (sale) => sale.customer);
     const total = sales.reduce((a, b) => a + b.sum, 0);
-    return total / Object.keys(customersObj).length;
+    return (total / Object.keys(customersObj).length).toFixed(2);
   }, [sales]);
   return (
     <Card shadow="shadow-md">

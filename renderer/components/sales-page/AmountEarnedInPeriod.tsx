@@ -7,7 +7,9 @@ const AmountEarnedInPeriod = () => {
   return (
     <Card shadow="shadow-md">
       <strong>Omsætning i alt:</strong>
-      <p className="text-lg">{sales.reduce((a, b) => a + b.sum, 0)} kr.</p>
+      <p className="text-lg">
+        {sales.reduce((a, b) => a + b.sum, 0).toFixed(2)} kr.
+      </p>
     </Card>
   );
 };

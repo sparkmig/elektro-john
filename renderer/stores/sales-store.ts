@@ -1,48 +1,22 @@
-import { action, createContextStore, thunkOn } from "easy-peasy";
+import { action, createContextStore, thunk, thunkOn } from "easy-peasy";
 import { SalesStore as SalesStoreType } from "../types/sales-store";
-import { Sale } from "../types/product";
+import { convertObjectToUrlParams } from "../utils/api-utils";
 
 export const SalesStore = createContextStore<SalesStoreType>({
   filter: {},
   sales: [],
-  refresh: action((state) => {
-    let items: Sale[] = [
-      {
-        customer: "Erik Hansen",
-        products: [],
-        sum: 888,
-        date: new Date("2024-12-12"),
-      },
-      {
-        customer: "Hans Hansen",
-        products: [],
-        sum: 888,
-        date: new Date("2024-12-13"),
-      },
-      {
-        customer: "John Dhoe",
-        products: [],
-        sum: 888,
-        date: new Date("2024-12-13"),
-      },
+  setSales: action((state, sales) => {
+    state.sales = sales;
+  }),
+  refresh: thunk(async (state, payload, { getState }) => {
+    const filter = getState().filter;
 
-      {
-        customer: "John Dhoe",
-        products: [],
-        sum: 888,
-        date: new Date("2024-12-14"),
-      },
-    ];
+    const params = convertObjectToUrlParams(filter);
+    const url = "http://localhost:5033/sales?" + params;
 
-    if (state.filter?.from) {
-      items = items.filter((x) => x.date >= state.filter.from);
-    }
-
-    if (state.filter?.to) {
-      items = items.filter((x) => x.date <= state.filter.to);
-    }
-
-    state.sales = items;
+    const response = await fetch(url);
+    if (response.ok) state.setSales(await response.json());
+    throw "response not ok";
   }),
   onFilterChange: thunkOn(
     (actions) => actions.updateFilter,
